@@ -7,14 +7,18 @@
 </head>
 
 <header th:insert="blocks/header :: header"></header>
+
 <div class="container mt-5">
   <h1>Article</h1>
   <div th:each="el : ${post}" class="alert alert-info mt-2">
     <h1 th:text="${el.title}"></h1>
     <p th:text="${el.full_text}"></p>
-    <p th:text="${el.views}"></p>
-    <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit article</a>
-    <a th:href="'/blog/' + ${el.id} + '/remove'" class="btn btn-warning">Delete article</a>
+    <p><b>Views: </b> <span th:text="${el.views}"/></p>
+    <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Edit article</a><br><br>
+    <form th:action="'/blog/' + ${el.id} + '/remove'" method="post">
+      <button class="btn btn-warning" type="submit">Delete article</button>
+    </form>
+
   </div>
 </div>
 
